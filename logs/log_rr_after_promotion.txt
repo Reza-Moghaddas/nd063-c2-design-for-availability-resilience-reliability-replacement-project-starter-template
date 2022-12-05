@@ -1,0 +1,25 @@
+MySQL [udacity]> select * from project_01_tutorial_table
+    -> ;
++-------------+----------------+-----------------+-----------------+
+| tutorial_id | tutorial_title | tutorial_author | submission_date |
++-------------+----------------+-----------------+-----------------+
+|           1 | title_01       | author_01       | 2022-12-03      |
++-------------+----------------+-----------------+-----------------+
+1 row in set (0.00 sec)
+
+MySQL [udacity]> insert into  project_01_tutorial_table(tutorial_title,tutorial_author,submission_date) values("title_01","author_01",NOW);
+ERROR 1290 (HY000): The MySQL server is running with the --read-only option so it cannot execute this statement
+MySQL [udacity]> insert into  project_01_tutorial_table(tutorial_title,tutorial_author,submission_date) values("title_02","author_02",NOW());
+Query OK, 1 row affected, 1 warning (0.01 sec)
+
+MySQL [udacity]> select * from project_01_tutorial_table
+    -> ;
++-------------+----------------+-----------------+-----------------+
+| tutorial_id | tutorial_title | tutorial_author | submission_date |
++-------------+----------------+-----------------+-----------------+
+|           1 | title_01       | author_01       | 2022-12-03      |
+|           2 | title_02       | author_02       | 2022-12-03      |
++-------------+----------------+-----------------+-----------------+
+2 rows in set (0.01 sec)
+
+MySQL [udacity]> 

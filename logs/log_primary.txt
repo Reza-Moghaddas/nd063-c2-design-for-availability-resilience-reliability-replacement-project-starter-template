@@ -1,0 +1,53 @@
+MySQL [udacity] > create table project -01 - tutorial - table(
+  tutorial_id INT NOT NULL AUTO_INCREMENT,
+  tutorial_title VARCHAR(100) NOT NULL,
+  tutorial_author VARCHAR(40) NOT NULL,
+  submission_date DATE,
+  PRIMARY KEY (tutorial_id)
+);
+ERROR 1064 (42000): You have an error in your SQL syntax;
+check the manual that corresponds to your MySQL server version for the right syntax to use near '-01-tutorial-table(    tutorial_id INT NOT NULL AUTO_INCREMENT,    tutorial_titl' at line 1 MySQL [udacity] > create table project_01_tutorial_table(
+  tutorial_id INT NOT NULL AUTO_INCREMENT,
+  tutorial_title VARCHAR(100) NOT NULL,
+  tutorial_author VARCHAR(40) NOT NULL,
+  submission_date DATE,
+  PRIMARY KEY (tutorial_id)
+);
+Query OK,
+0 rows affected (0.09 sec) MySQL [udacity] >
+insert into
+  project_01_tutorial_table(tutorial_title, tutorial_author, submission_date)
+values("title_01", "author_01", NOW);
+ERROR 1054 (42S22): Unknown column 'NOW' in 'field list' MySQL [udacity] >
+insert into
+  project_01_tutorial_table(tutorial_title, tutorial_author, submission_date)
+values("title_01", "author_01", NOW());
+Query OK,
+  1 row affected,
+  1 warning (0.02 sec) MySQL [udacity] >
+select
+  *
+from
+  project_01_tutorial_table;
++ -------------+----------------+-----------------+-----------------+
+  | tutorial_id | tutorial_title | tutorial_author | submission_date | + -------------+----------------+-----------------+-----------------+
+  | 1 | title_01 | author_01 | 2022 -12 -03 | + -------------+----------------+-----------------+-----------------+
+  1 row in
+set
+  (0.00 sec) MySQL [udacity] >
+SET
+  global general_log = 1;
+SET
+  global log_output = 'table';
+ERROR 1227 (42000): Access denied;
+you need (at least one of) the SUPER
+  or SYSTEM_VARIABLES_ADMIN privilege(s) for this operation ERROR 1227 (42000): Access denied;
+you need (at least one of) the SUPER
+  or SYSTEM_VARIABLES_ADMIN privilege(s) for this operation MySQL [udacity] >
+SELECT
+  *
+FROM
+  mysql.general_log;
+Empty
+set
+  (0.00 sec)

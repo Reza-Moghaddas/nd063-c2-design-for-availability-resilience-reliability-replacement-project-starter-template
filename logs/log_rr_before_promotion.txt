@@ -1,0 +1,76 @@
+(base) ➜  starter git:(master) ✗ ssh -i "replica-keypair.pem" ec2-user@ec2-44-198-171-163.compute-1.amazonaws.com
+The authenticity of host 'ec2-44-198-171-163.compute-1.amazonaws.com (44.198.171.163)' can't be established.
+ED25519 key fingerprint is SHA256:bngS83wCagWStrfp7OpiP+hbcQd0cNBD+WBeZaklfiI.
+This key is not known by any other names
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added 'ec2-44-198-171-163.compute-1.amazonaws.com' (ED25519) to the list of known hosts.
+
+       __|  __|_  )
+       _|  (     /   Amazon Linux 2 AMI
+      ___|\___|___|
+
+https://aws.amazon.com/amazon-linux-2/
+1 package(s) needed for security, out of 1 available
+Run "sudo yum update" to apply all updates.
+[ec2-user@ip-10-2-11-124 ~]$ sudo yum install mysql
+Loaded plugins: extras_suggestions, langpacks, priorities, update-motd
+Resolving Dependencies
+--> Running transaction check
+---> Package mariadb.x86_64 1:5.5.68-1.amzn2 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+===========================================================================================================================================================
+ Package                           Arch                             Version                                     Repository                            Size
+===========================================================================================================================================================
+Installing:
+ mariadb                           x86_64                           1:5.5.68-1.amzn2                            amzn2-core                           8.8 M
+
+Transaction Summary
+===========================================================================================================================================================
+Install  1 Package
+
+Total download size: 8.8 M
+Installed size: 49 M
+Is this ok [y/d/N]: y
+Downloading packages:
+mariadb-5.5.68-1.amzn2.x86_64.rpm                                                                                                   | 8.8 MB  00:00:00     
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Installing : 1:mariadb-5.5.68-1.amzn2.x86_64                                                                                                         1/1 
+  Verifying  : 1:mariadb-5.5.68-1.amzn2.x86_64                                                                                                         1/1 
+
+Installed:
+  mariadb.x86_64 1:5.5.68-1.amzn2                                                                                                                          
+
+Complete!
+[ec2-user@ip-10-2-11-124 ~]$ mysql -u admin -p -h udacity.cfcjq5l0tqwb.us-east-1.rds.amazonaws.com
+Enter password: 
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MySQL connection id is 62
+Server version: 8.0.28 Source distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MySQL [(none)]> use udacity
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+MySQL [udacity]> select * from project_01_tutorial_table
+    -> ;
++-------------+----------------+-----------------+-----------------+
+| tutorial_id | tutorial_title | tutorial_author | submission_date |
++-------------+----------------+-----------------+-----------------+
+|           1 | title_01       | author_01       | 2022-12-03      |
++-------------+----------------+-----------------+-----------------+
+1 row in set (0.00 sec)
+
+MySQL [udacity]> insert into  project_01_tutorial_table(tutorial_title,tutorial_author,submission_date) values("title_01","author_01",NOW);
+ERROR 1290 (HY000): The MySQL server is running with the --read-only option so it cannot execute this statement
+MySQL [udacity]> 
